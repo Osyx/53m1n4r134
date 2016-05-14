@@ -1,4 +1,4 @@
-package se.kth.ict.nextgenpos.model;
+package model;
 
 /**
  * An instance of this class hold all information about a certain product.

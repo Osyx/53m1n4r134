@@ -1,7 +1,7 @@
-package se.kth.ict.nextgenpos.startup;
+package startup;
 
-import se.kth.ict.nextgenpos.controller.Controller;
-import se.kth.ict.nextgenpos.view.View;
+import controller.Controller;
+import view.View;
 
 /**
  * Starts the application.

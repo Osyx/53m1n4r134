@@ -1,4 +1,4 @@
-package se.kth.ict.nextgenpos.model;
+package model;
 
 /**
  * An instance of this class holds information about a single sale of a single product.

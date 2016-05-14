@@ -1,6 +1,6 @@
-package se.kth.ict.nextgenpos.view;
+package view;
 
-import se.kth.ict.nextgenpos.controller.Controller;
+import controller.Controller;
 
 /**
  * A placeholder for the view.

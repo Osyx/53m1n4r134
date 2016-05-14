@@ -1,9 +1,9 @@
-package se.kth.ict.nextgenpos.controller;
+package controller;
 
-import se.kth.ict.nextgenpos.model.Sale;
-import se.kth.ict.nextgenpos.model.Receipt;
-import se.kth.ict.nextgenpos.model.ProductCatalog;
-import se.kth.ict.nextgenpos.model.ProductSpecification;
+import model.Sale;
+import model.Receipt;
+import model.ProductCatalog;
+import model.ProductSpecification;
 
 /**
  * The controller of the application. This is the sole controller, all calls to the
