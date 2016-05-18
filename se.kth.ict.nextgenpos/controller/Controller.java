@@ -38,14 +38,20 @@ public class Controller {
      * @param itemId         An identifier for the item that is entered.
      * @param quantity       The quantity of items to be entered.
      * @return               Information about the entered item.
+     * @throws Exception 
      * @throws IllegalStateException If this method is called before makeNewSale().
      */
-    public ProductSpecification enterItem(int itemId, int quantity) {
+    public ProductSpecification enterItem(int itemId, int quantity) throws Exception {
 	if (sale == null) {
 	    throw new IllegalStateException("enterItem() called before makeNewSale()");
 	}
-	ProductSpecification spec = catalog.findSpecification(itemId);
-	sale.addItem(spec, quantity);
+	ProductSpecification spec = null;
+	try {
+		spec = catalog.findSpecification(itemId);
+		sale.addItem(spec, quantity);
+	} catch (Exception e) {
+		throw e;
+	}
 	return spec;
     }
 

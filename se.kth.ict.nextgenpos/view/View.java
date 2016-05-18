@@ -22,18 +22,17 @@ public class View {
     public void test() {
 	cont.makeNewSale();
 	enterItem(1);
-	System.out.println(">>>>> NOTE!!\n" +
-			   "A null pointer exception will follow since there is no handling" + 
-			   " of non-existing item ids. When you have implemented exception" +
-			   " handling, there should be some informative printout instead of the" +
-			   " exception stack trace.");
 	enterItem(10);
     }
 
     private void enterItem(int itemId) {
 	int quantity = 1;
 	System.out.println("");
-	System.out.println("Result for item " + itemId + ": " + cont.enterItem(itemId, quantity));
+	try {
+		System.out.println("Result for item " + itemId + ": " + cont.enterItem(itemId, quantity));
+	} catch (Exception e) {
+		System.out.println("There is no such item, please try again.");
+	}
 	System.out.println("");
     }
 }

@@ -31,7 +31,21 @@ public class ProductCatalog {
     public ProductSpecification findSpecification(int itemId) throws Exception{
     	// Added code.
     	if(itemId > products.size())
-    		throw new itemIdOutofRangeException("There is no item with that ID.");
+    		throw new itemIdOutOfRangeException(itemId);
 	    return products.get(itemId);
+    }
+    
+    @SuppressWarnings("serial")
+	public class itemIdOutOfRangeException extends Exception {
+        private int itemId;
+
+		public itemIdOutOfRangeException(int itemId) {
+            super("There is no item with the number " + itemId + " available.");
+            this.itemId = itemId;
+        }
+		
+		public int getItemId() {
+			return itemId;
+		}
     }
 }
