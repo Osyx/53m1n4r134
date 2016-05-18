@@ -28,7 +28,7 @@ public class ProductCatalog {
      * @param    itemId The item to look for
      * @return          The specification for the found item or null if no item was found.
      */
-    public ProductSpecification findSpecification(int itemId) throws Exception{
+    public ProductSpecification findSpecification(int itemId) throws itemIdOutOfRangeException{
     	// Added code.
     	if(itemId > products.size())
     		throw new itemIdOutOfRangeException(itemId);

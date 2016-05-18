@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.ProductCatalog.itemIdOutOfRangeException;
 
 /**
  * A placeholder for the view.
@@ -30,8 +31,8 @@ public class View {
 	System.out.println("");
 	try {
 		System.out.println("Result for item " + itemId + ": " + cont.enterItem(itemId, quantity));
-	} catch (Exception e) {
-		System.out.println("There is no such item, please try again.");
+	} catch (itemIdOutOfRangeException itemIdNotFoundException) {
+		System.out.println("There is no item with an item ID of \"" + itemIdNotFoundException.getItemId() + "\", please try again.");
 	}
 	System.out.println("");
     }
