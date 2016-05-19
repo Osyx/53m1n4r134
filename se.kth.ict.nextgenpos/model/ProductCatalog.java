@@ -7,13 +7,13 @@ import java.util.HashMap;
  * This class is responsible for all access to the product database.
  */ 
 public class ProductCatalog { 
-    private Map<Integer, ProductSpecification> products = 
-	new HashMap<Integer, ProductSpecification>();
+	static ProductCatalog instance = new ProductCatalog();
+    private Map<Integer, ProductSpecification> products = new HashMap<Integer, ProductSpecification>();
 
     /**
      * Fills the catalog with some dummy items.
      */
-    public ProductCatalog() {
+    private ProductCatalog() {
 	products.put(1, new ProductSpecification(1, "low fat milk", 
 	   "a very long description, a very long description, a very long description", 10));
 	products.put(2, new ProductSpecification(2, "butter", 
@@ -33,6 +33,10 @@ public class ProductCatalog {
     	if(itemId > products.size())
     		throw new itemIdOutOfRangeException(itemId);
 	    return products.get(itemId);
+    }
+    
+    public static ProductCatalog getInstance() {
+    	return instance;
     }
     
     @SuppressWarnings("serial")

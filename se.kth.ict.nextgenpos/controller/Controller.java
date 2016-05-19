@@ -19,7 +19,7 @@ public class Controller {
      * Instantiates a new <code>Controller</code>.
      */
     public Controller() {
-	catalog = new ProductCatalog();
+    	catalog = makeProductCatalog();
     }
     
     /**
@@ -83,6 +83,10 @@ public class Controller {
     
     public void addObserver(ListObserver observer) {
         sale.addObserver(observer);
+    }
+    
+    private ProductCatalog makeProductCatalog() {
+    	return ProductCatalog.getInstance();
     }
 
 }
