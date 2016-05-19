@@ -10,7 +10,7 @@ import model.SalesLineItem;
 /**
  * A placeholder for the view.
  */
-public class View implements ListObserver {
+public class View {
     private Controller cont;
     private List<SalesLineItem> lineItems;
 	private ListObserver observer;
