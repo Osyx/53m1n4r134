@@ -28,6 +28,11 @@ public class SalesLineItem {
 	return spec.getPrice() * quantity;
     }
     
+    /**
+     * 	Returns the objects information as an string.
+     * 
+     *  @return A string containing information about the item.
+     */
     @Override
     public String toString() {
 		return "\nSpec: " + spec + ", quantity: " + quantity;

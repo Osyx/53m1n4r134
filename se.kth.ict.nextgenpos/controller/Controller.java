@@ -81,6 +81,12 @@ public class Controller {
 	return sale.createReceipt(payedAmount);
     }
     
+    /**
+     * Registers an Observer that shall be notified about changes in the 
+     * users basket (<code>lineItem</code> list.)
+     *
+     * @param observer The Observer that should be registered.
+     */ 
     public void addObserver(ListObserver observer) {
         sale.addObserver(observer);
     }
