@@ -59,10 +59,4 @@ public class View implements ListObserver {
 			this.lineItems = lineItems;
 			
 		}
-
-		@Override
-		public void notify(List<SalesLineItem> lineItems) {
-			viewList(lineItems);
-			
-		}
 }
