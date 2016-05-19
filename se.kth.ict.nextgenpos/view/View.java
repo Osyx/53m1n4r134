@@ -1,13 +1,19 @@
 package view;
 
+import java.util.List;
+
 import controller.Controller;
+import model.ListObserver;
 import model.ProductCatalog.itemIdOutOfRangeException;
+import model.SalesLineItem;
 
 /**
  * A placeholder for the view.
  */
-public class View {
+public class View implements ListObserver {
     private Controller cont;
+    private List<SalesLineItem> lineItems;
+	private ListObserver observer;
 
     /**
      * Creates a new <code>View</code>.
@@ -15,25 +21,48 @@ public class View {
      */
     public View(Controller cont) {
 		this.cont = cont;
-	    }
+		this.observer = new ListObserver() {
+
+			@Override
+			public void notify(List<SalesLineItem> lineItems) {
+				viewList(lineItems);
+				
+			}
+		};
+	   }
 	
 	    /**
 	     * Simulates a view. Makes some calls to the controller.
 	     */
 	    public void test() {
-		cont.makeNewSale();
-		enterItem(1);
-		enterItem(10);
+			cont.makeNewSale();
+			cont.addObserver(this.observer);
+			enterItem(1);
+			enterItem(2);
+			enterItem(10);
 	    }
 	
 	    private void enterItem(int itemId) {
-		int quantity = 1;
-		System.out.println("");
-		try {
-			System.out.println("Result for item " + itemId + ": " + cont.enterItem(itemId, quantity));
-		} catch (itemIdOutOfRangeException itemIdNotFoundException) {
-			System.out.println("There is no item with an item ID of \"" + itemIdNotFoundException.getItemId() + "\", please try again.");
-		}
-		System.out.println("");
+			int quantity = 1;
+			System.out.println("");
+	        System.out.println("Your basket contains:\n" + lineItems);
+	        System.out.println("");
+			try {
+				System.out.println("Added item " + itemId + ": \n" + cont.enterItem(itemId, quantity));
+			} catch (itemIdOutOfRangeException itemIdNotFoundException) {
+				System.out.println("There is no item with an item ID of \"" + itemIdNotFoundException.getItemId() + "\", please try again.");
+			}
+			System.out.println("");
 	   }
+	    
+		public void viewList(List<SalesLineItem> lineItems) {
+			this.lineItems = lineItems;
+			
+		}
+
+		@Override
+		public void notify(List<SalesLineItem> lineItems) {
+			viewList(lineItems);
+			
+		}
 }

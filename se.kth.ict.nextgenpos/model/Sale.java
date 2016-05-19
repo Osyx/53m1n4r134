@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Sale {
     private List<SalesLineItem> lineItems;
+    private List<ListObserver> observers = new ArrayList<ListObserver>();
     private int currentTotal;
     private int payedAmount;
     private int iterator;
@@ -16,7 +17,8 @@ public class Sale {
      * Instantiates a new <code>Sale</code>.
      */
     public Sale() {
-	lineItems = new ArrayList<SalesLineItem>();
+    	lineItems = new ArrayList<SalesLineItem>();
+    	
     }
 
     /**
@@ -26,14 +28,30 @@ public class Sale {
      * @param quantity        The number of items.
      */
     public void addItem(ProductSpecification spec, int quantity) {
-	SalesLineItem lineItem = new SalesLineItem(spec, quantity);
-	lineItems.add(lineItem);
-	addToTotal(lineItem);
+		SalesLineItem lineItem = new SalesLineItem(spec, quantity);
+		lineItems.add(lineItem);
+		addToTotal(lineItem);
+		notifyObservers();
     }
 
     private void addToTotal(SalesLineItem lineItem) {
-	currentTotal = 
-	    currentTotal + lineItem.getCost();
+    	currentTotal = currentTotal + lineItem.getCost();
+    }
+    
+    /**
+     * Registers an Observer that shall be notified about changes in the register's
+     * balance.
+     *
+     * @param observers The Observer that shall be registered.
+     */ 
+    public void addObserver(ListObserver observer) {
+    	observers.add(observer);
+    }
+
+    private void notifyObservers() {
+		for (ListObserver observer : observers) {
+		    observer.notify(lineItems);
+		}
     }
 
     /**
@@ -42,7 +60,7 @@ public class Sale {
      * @return The total cost of all products registered so for.
      */
     public int getCurrentTotal() {
-	return currentTotal;
+    	return currentTotal;
     }
 
     /**
@@ -51,23 +69,24 @@ public class Sale {
      * @return All information needed for the receipt.
      */
     public Receipt createReceipt(int payedAmount) {
-	this.payedAmount = payedAmount;
-	return new Receipt(this);
+    	this.payedAmount = payedAmount;
+		return new Receipt(this);
     }
 
     void resetLineItemIterator() {
-	iterator = 0;
+    	iterator = 0;
     }
 
     SalesLineItem nextLineItem() {
-	return lineItems.get(iterator);
+    	return lineItems.get(iterator);
     }
 
     boolean hasMoreLineItems() {
-	return iterator < lineItems.size();
+    	return iterator < lineItems.size();
     }
 
     int getPayedAmount() {
-	return payedAmount;
+    	return payedAmount;
     }
+    
 }

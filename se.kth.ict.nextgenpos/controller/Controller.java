@@ -2,6 +2,7 @@ package controller;
 
 import model.Sale;
 import model.Receipt;
+import model.ListObserver;
 import model.ProductCatalog;
 import model.ProductCatalog.itemIdOutOfRangeException;
 import model.ProductSpecification;
@@ -78,6 +79,10 @@ public class Controller {
      */
     public Receipt makePayment(int payedAmount) {
 	return sale.createReceipt(payedAmount);
+    }
+    
+    public void addObserver(ListObserver observer) {
+        sale.addObserver(observer);
     }
 
 }
