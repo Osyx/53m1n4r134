@@ -39,10 +39,10 @@ public class Sale {
     }
     
     /**
-     * Registers an Observer that shall be notified about changes in the register's
-     * balance.
+     * Registers an Observer that shall be notified about changes in the 
+     * users basket (<code>lineItem</code> list.)
      *
-     * @param observers The Observer that shall be registered.
+     * @param observers The Observer that should be registered.
      */ 
     public void addObserver(ListObserver observer) {
     	observers.add(observer);

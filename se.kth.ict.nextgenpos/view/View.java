@@ -26,37 +26,36 @@ public class View {
 			@Override
 			public void notify(List<SalesLineItem> lineItems) {
 				viewList(lineItems);
-				
 			}
 		};
-	   }
-	
-	    /**
-	     * Simulates a view. Makes some calls to the controller.
-	     */
-	    public void test() {
-			cont.makeNewSale();
-			cont.addObserver(this.observer);
-			enterItem(1);
-			enterItem(2);
-			enterItem(10);
-	    }
-	
-	    private void enterItem(int itemId) {
-			int quantity = 1;
-			System.out.println("");
-	        System.out.println("Your basket contains:\n" + lineItems);
-	        System.out.println("");
-			try {
-				System.out.println("Added item " + itemId + ": \n" + cont.enterItem(itemId, quantity));
-			} catch (itemIdOutOfRangeException itemIdNotFoundException) {
-				System.out.println("There is no item with an item ID of \"" + itemIdNotFoundException.getItemId() + "\", please try again.");
-			}
-			System.out.println("");
-	   }
-	    
-		public void viewList(List<SalesLineItem> lineItems) {
-			this.lineItems = lineItems;
-			
+	}
+
+    /**
+     * Simulates a view. Makes some calls to the controller.
+     */
+    public void test() {
+		cont.makeNewSale();
+		cont.addObserver(this.observer);
+		enterItem(1);
+		enterItem(2);
+		enterItem(10);
+    }
+
+    private void enterItem(int itemId) {
+		int quantity = 1;
+		System.out.println("");
+        System.out.println("Your basket contains:\n" + lineItems);
+        System.out.println("");
+		try {
+			System.out.println("Added item " + itemId + ": \n" + cont.enterItem(itemId, quantity));
+		} catch (itemIdOutOfRangeException itemIdNotFoundException) {
+			System.out.println("There is no item with an item ID of \"" + itemIdNotFoundException.getItemId() + "\", please try again.");
+		}
+		System.out.println("");
+   }
+    
+	private void viewList(List<SalesLineItem> lineItems) {
+		this.lineItems = lineItems;
+		
 		}
 }
