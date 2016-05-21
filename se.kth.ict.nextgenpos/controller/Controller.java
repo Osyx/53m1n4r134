@@ -4,7 +4,7 @@ import model.Sale;
 import model.Receipt;
 import model.ListObserver;
 import model.ProductCatalog;
-import model.ProductCatalog.itemIdOutOfRangeException;
+import model.ProductCatalog.ItemIdOutOfRangeException;
 import model.ProductSpecification;
 
 /**
@@ -42,8 +42,9 @@ public class Controller {
      * @return               Information about the entered item.
      * @throws Exception 
      * @throws IllegalStateException If this method is called before makeNewSale().
+     * @throws ItemOutOfRangeException If this methods call to the catalog fails.
      */
-    public ProductSpecification enterItem(int itemId, int quantity) throws itemIdOutOfRangeException {
+    public ProductSpecification enterItem(int itemId, int quantity) throws Exception {
 	if (sale == null) {
 	    throw new IllegalStateException("enterItem() called before makeNewSale()");
 	}
@@ -51,7 +52,7 @@ public class Controller {
 	try {
 		spec = catalog.findSpecification(itemId);
 		sale.addItem(spec, quantity);
-	} catch (itemIdOutOfRangeException itemIdOutOfRangeException) {
+	} catch (ItemIdOutOfRangeException itemIdOutOfRangeException) {
 		throw itemIdOutOfRangeException;
 	}
 	return spec;

@@ -27,11 +27,12 @@ public class ProductCatalog {
      *
      * @param    itemId The item to look for
      * @return          The specification for the found item or null if no item was found.
+     * @throws ItemOutOfRangeException If the entered <code>itemId</code> doesn't exist in the catalog.
      */
-    public ProductSpecification findSpecification(int itemId) throws itemIdOutOfRangeException{
+    public ProductSpecification findSpecification(int itemId) throws ItemIdOutOfRangeException{
     	
-    	if(itemId > products.size())
-    		throw new itemIdOutOfRangeException(itemId);
+    	if((itemId > products.size()) || (itemId <= 0))
+    		throw new ItemIdOutOfRangeException(itemId);
 	    return products.get(itemId);
     }
     
@@ -48,14 +49,14 @@ public class ProductCatalog {
      * be called when user calls for an item that doesn't exist.
      */
     @SuppressWarnings("serial")
-	public class itemIdOutOfRangeException extends Exception {
+	public class ItemIdOutOfRangeException extends Exception {
         private int itemId;
         
         /**
          * Contructor for the <code>itemIdOutOfRangeException</code> Exception.
          * @param itemId	the faulty <code>itemId<code> which is out of range.
          */
-		public itemIdOutOfRangeException(int itemId) {
+		public ItemIdOutOfRangeException(int itemId) {
             super("There is no item with the number " + itemId + " available.");
             this.itemId = itemId;
         }

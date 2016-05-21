@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 import model.ListObserver;
-import model.ProductCatalog.itemIdOutOfRangeException;
+import model.ProductCatalog.ItemIdOutOfRangeException;
 import model.SalesLineItem;
 
 /**
@@ -48,8 +48,17 @@ public class View {
         System.out.println("");
 		try {
 			System.out.println("Added item " + itemId + ": \n" + cont.enterItem(itemId, quantity));
-		} catch (itemIdOutOfRangeException itemIdNotFoundException) {
-			System.out.println("There is no item with an item ID of \"" + itemIdNotFoundException.getItemId() + "\", please try again.");
+		} catch (ItemIdOutOfRangeException itemIdNotFoundException) {
+			System.out.println("There is no item with an item ID of \"" 
+								+ itemIdNotFoundException.getItemId() + "\", please try again.");
+			
+		} catch (IllegalStateException illegalStateException){
+			System.out.println("An error occured, reason for this:\n");
+			illegalStateException.getCause();			
+			
+		} catch (Exception e) {
+			System.out.println("An error occured, stack trace:\n");
+			e.getStackTrace();
 		}
 		System.out.println("");
    }
